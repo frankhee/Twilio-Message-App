@@ -22,14 +22,15 @@ app.post('/sms', (req, res) => {
 });
 
 //handle outgoing text
-app.post('/text', (req, res) => {
+app.post('/text', async (req, res) => {
   try {
+    const number = req.body.requestBody.message;
     const options = {
       from: '+18043699101',
-      to: `+1${req.body.requestBody.message}`,
+      to: `+1${number}`,
       body: 'Hello World'
     }
-    client.messages.create(options, function(err, response) {
+    await client.messages.create(options, function(err, response) {
       if(err) {
         console.error(err);
       } else {
