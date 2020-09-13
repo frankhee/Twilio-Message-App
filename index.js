@@ -7,9 +7,11 @@ const authToken = process.env.TWILIO_AUTH;
 const client = require('twilio')(accountSid, authToken);
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
+//middleware 
 app.use(cors());
 app.use(express.json());
 
+//handle incoming text 
 app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
 
@@ -19,29 +21,25 @@ app.post('/sms', (req, res) => {
   res.end(twiml.toString());
 });
 
+//handle outgoing text
 app.post('/text', (req, res) => {
   try {
-    req.setTimeout(30);
     const options = {
       from: '+18043699101',
       to: `+1${req.body.requestBody.message}`,
       body: 'Hello World'
     }
-    sendMessage(options);
+    client.messages.create(options, function(err, response) {
+      if(err) {
+        console.error(err);
+      } else {
+        console.log("Message sent successfully!")
+      }
+    })
   } catch (error) {
     console.error(error.message);
   }
 });
-
-async function sendMessage(options) {
-  await client.messages.create(options, function(err, response) {
-    if(err) {
-      console.error(err);
-    } else {
-      console.log("Message sent successfully!")
-    }
-  })
-};
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
