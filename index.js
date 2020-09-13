@@ -19,7 +19,7 @@ app.post('/sms', (req, res) => {
   res.end(twiml.toString());
 });
 
-app.post('/text', async (req, res) => {
+app.post('/text', (req, res) => {
   try {
     req.setTimeout(0);
     const options = {
@@ -33,8 +33,8 @@ app.post('/text', async (req, res) => {
   }
 });
 
-function sendMessage(options) {
-  client.messages.create(options, function(err, response) {
+async function sendMessage(options) {
+  await client.messages.create(options, function(err, response) {
     if(err) {
       console.error(err);
     } else {
