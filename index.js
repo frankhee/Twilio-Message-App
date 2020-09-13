@@ -43,6 +43,10 @@ function sendMessage(options) {
   })
 };
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
 app.listen(port, function () {
   console.log(`Server has started on port ${port}!`);
 });
