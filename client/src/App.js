@@ -44,7 +44,7 @@ function App() {
     const requestBody = { 
       message: inputValue
     };
-    axios.post(`http://${process.env.PORT}/text`, { requestBody })
+    axios.post(`${process.env.PORT}/text`, { requestBody })
     .then(res => {
       console.log(res);
       console.log(res.data);
