@@ -29,6 +29,7 @@ app.post('/text', (req, res) => {
     }
     sendMessage(options);
   } catch (error) {
+    console.log("Server side error")
     console.error(error.message);
   }
 });
