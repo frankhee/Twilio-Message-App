@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const port = process.env.PORT || 7000;
 const accountSid = process.env.REACT_APP_SID;
 const authToken = process.env.REACT_APP_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
@@ -42,6 +43,6 @@ function sendMessage(options) {
   })
 };
 
-app.listen(7000, function () {
-  console.log('Server has started on port 7000!');
+app.listen(port, function () {
+  console.log(`Server has started on port ${port}!`);
 });
