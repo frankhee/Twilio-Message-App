@@ -35,12 +35,12 @@ const useStyles = makeStyles(() => ({
     alignSelf: 'center'
   }
 }));
+
 function App() {
   const classes = useStyles();
   const [inputValue, setInputValue] = useState("");
 
   function handleSubmit() {
-    console.log("Handle submit ran")
     const requestBody = { 
       message: inputValue
     };
