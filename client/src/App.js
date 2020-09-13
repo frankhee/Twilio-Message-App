@@ -49,6 +49,9 @@ function App() {
       console.log(res);
       console.log(res.data);
     })
+    .catch(err => {
+      console.error(err.message)
+    })
   };
 
   return (
