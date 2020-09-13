@@ -44,7 +44,7 @@ function App() {
     const requestBody = { 
       message: inputValue
     };
-    axios.post(`${process.env.PORT}/text`, { requestBody })
+    axios.post(`https://twilio-app-frank.herokuapp.com/text`, { requestBody })
     .then(res => {
       console.log(res);
       console.log(res.data);
