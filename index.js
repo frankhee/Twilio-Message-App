@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 7000;
-const accountSid = process.env.REACT_APP_SID;
-const authToken = process.env.REACT_APP_AUTH_TOKEN;
+const accountSid = process.env.TWILIO_SID;
+const authToken = process.env.TWILIO_AUTH;
 const client = require('twilio')(accountSid, authToken);
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
