@@ -21,6 +21,7 @@ app.post('/sms', (req, res) => {
 
 app.post('/text', (req, res) => {
   try {
+    req.setTimeout(30);
     const options = {
       from: '+18043699101',
       to: `+1${req.body.requestBody.message}`,
